@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Real_Estate_App</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="login">Login</string>
+    <string name="real_estate_splash">Splash Screen Image</string>
+    <string name="discover_home">Discover your home</string>
+    <string name="find_affordable">Find affordable houses in Kigali and connect directly with owners</string>
+</resources>
