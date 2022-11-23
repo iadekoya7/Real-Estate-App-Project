@@ -37,7 +37,7 @@ fun SplashScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             .verticalScroll(scrollState)
-            )
+    )
     {
         Image(
             painter = painterResource(id = R.drawable.card_background),
@@ -71,8 +71,7 @@ fun SplashScreen(
         )
         AppButton(
             onClick = {
-                navController.popBackStack()
-                navController.navigate(Routes.SignUp)
+                navController.navigate(Routes.SignUpScreen.route)
             }
         ) {
             Text(text = stringResource(id = R.string.sign_up))
@@ -80,8 +79,7 @@ fun SplashScreen(
 
         AppSecondButton(
             onClick = {
-                navController.popBackStack()
-                navController.navigate(Routes.Login)
+                navController.navigate(Routes.LoginScreen.route)
             }
         ) {
             Text(text = stringResource(id = R.string.login))

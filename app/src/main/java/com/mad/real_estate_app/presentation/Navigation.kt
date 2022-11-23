@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 
 @Composable
 fun Navigation(
@@ -11,19 +12,19 @@ fun Navigation(
 ) {
     NavHost(
         navController = navController,
-        startDestination = Routes.SplashScreen
+        startDestination = Routes.SplashScreen.route
     ){
-        composable(Routes.SplashScreen){
+        composable(Routes.SignUpScreen.route){
+            SignUpScreen(navController = navController)
+        }
+        composable(Routes.SplashScreen.route){
             SplashScreen(navController = navController)
         }
-        composable(Routes.Home){
+        composable(Routes.Home.route){
 
         }
-        composable(Routes.Login){
+        composable(Routes.LoginScreen.route){
             LoginScreen(navController = navController)
-        }
-        composable(Routes.SignUp){
-
         }
     }
 }
