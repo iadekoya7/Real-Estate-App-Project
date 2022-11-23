@@ -22,8 +22,6 @@ fun Navigation(
         composable(Routes.Login){
             LoginScreen(navController = navController)
         }
-        composable(Routes.SignUp){
 
-        }
     }
 }
