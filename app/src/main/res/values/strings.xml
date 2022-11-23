@@ -15,4 +15,6 @@
     <string name="real_estate_splash">Splash Screen Image</string>
     <string name="discover_home">Discover your home</string>
     <string name="find_affordable">Find affordable houses in Kigali and connect directly with owners</string>
+    <string name="inText">Text</string>
+    <string name="imageDescription">Description</string>
 </resources>
