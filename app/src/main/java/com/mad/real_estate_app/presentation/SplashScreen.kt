@@ -43,7 +43,7 @@ fun SplashScreen(
             painter = painterResource(id = R.drawable.card_background),
             contentDescription = stringResource(id = R.string.real_estate_splash),
             modifier = Modifier
-                .padding(10.dp)
+                .padding(top = 50.dp)
                 .clip(RoundedCornerShape(30.dp))
         )
         Spacer(modifier = Modifier.height(10.dp))
