@@ -2,6 +2,8 @@
     <string name="app_name">Real_Estate_App</string>
     <string name="sign_up">Sign Up</string>
     <string name="submit">Submit</string>
+    <string name="sign_in">Sign In</string>
+    <string name="user_name">Username</string>
     <string name="create_account">Create Account</string>
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>

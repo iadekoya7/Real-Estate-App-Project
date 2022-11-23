@@ -14,8 +14,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -25,7 +23,6 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.mad.real_estate_app.R
 import com.mad.real_estate_app.ui.theme.Real_Estate_AppTheme
-import com.mad.real_estate_app.util.AppButton
 import com.mad.real_estate_app.util.AppSecondButton
 
 @Composable
@@ -51,7 +48,6 @@ fun LoginScreen(
                 .padding(bottom = 10.dp)
                 .fillMaxWidth(1f)
         )
-//        Spacer(modifier = Modifier.height(10.dp))
         Text(
 
             text = stringResource(id = R.string.sign_in),
@@ -70,7 +66,7 @@ fun LoginScreen(
         AppSecondButton(
             onClick = {
                 navController.popBackStack()
-                navController.navigate(Routes.Login)
+                navController.navigate(Routes.LoginScreen.route)
             },
             modifier = Modifier
                 .fillMaxWidth(0.9f)

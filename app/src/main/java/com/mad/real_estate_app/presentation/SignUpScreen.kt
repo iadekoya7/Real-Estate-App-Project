@@ -44,7 +44,7 @@ fun SignUpScreen(
     var firstNameString by remember { mutableStateOf("") }
     var lastNameString by remember { mutableStateOf("") }
     var emailAddressString by remember { mutableStateOf("") }
-    val accountList = listOf("LandLord", "Student")
+    val accountList = listOf("LandLord", "Tenant")
     var passwordString by remember{ mutableStateOf("") }
     var expanded by remember{ mutableStateOf(false) }
     var accountExpanded by remember{ mutableStateOf(false) }
