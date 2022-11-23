@@ -1,5 +1,6 @@
 package com.mad.real_estate_app.presentation
 
+import android.widget.Toast
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -16,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -29,31 +31,42 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.toSize
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.google.firebase.auth.FirebaseAuth
 import com.mad.real_estate_app.R
 import com.mad.real_estate_app.ui.theme.Real_Estate_AppTheme
 import com.mad.real_estate_app.util.AppButton
+import com.mad.real_estate_app.util.Loading
 import com.mad.real_estate_app.util.RealEstateAppBar
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 
 @Composable
 fun SignUpScreen(
     navController: NavController
 ){
-
     val scrollState = rememberScrollState()
+    val coroutineScope = rememberCoroutineScope()
     val title = stringResource(id = R.string.sign_up)
     var firstNameString by remember { mutableStateOf("") }
     var lastNameString by remember { mutableStateOf("") }
     var emailAddressString by remember { mutableStateOf("") }
     val accountList = listOf("LandLord", "Tenant")
     var passwordString by remember{ mutableStateOf("") }
+    val passwordIsValid = passwordString.isNotBlank()
+    val emailIsValid = emailAddressString.isNotBlank()
+    val firstNameIsValid = firstNameString.isNotBlank()
+    val lastNameIsValid = lastNameString.isNotBlank()
     var expanded by remember{ mutableStateOf(false) }
     var accountExpanded by remember{ mutableStateOf(false) }
     val list = listOf("Male", "Female")
+    val context = LocalContext.current
     var selectedItem by remember { mutableStateOf("") }
     var accountSelectedItem by remember{ mutableStateOf("") }
     var textFiledSize by remember { mutableStateOf(Size.Zero) }
     var accountTextFiledSize by remember{ mutableStateOf(Size.Zero) }
     var passwordVisibility by remember { mutableStateOf(false) }
+    var loadingMessage by remember{ mutableStateOf("") }
     val passwordIcon = if (passwordVisibility){
         Icons.Filled.Visibility
     } else {
@@ -65,11 +78,42 @@ fun SignUpScreen(
     } else{
         Icons.Filled.KeyboardArrowDown
     }
+
     val accountIcon = if(accountExpanded){
         Icons.Filled.KeyboardArrowUp
     } else{
         Icons.Filled.KeyboardArrowDown
     }
+
+    val signUpUser: suspend CoroutineScope.() -> Unit =
+        remember(emailAddressString, passwordString){
+            signUpUser@{
+                if(!firstNameIsValid ) {
+                    Toast.makeText(context, "First name cannot be empty", Toast.LENGTH_LONG).show()
+                    return@signUpUser
+                }
+                if(!lastNameIsValid) {
+                    Toast.makeText(context, "Last name cannot be empty", Toast.LENGTH_LONG).show()
+                    return@signUpUser
+                }
+                loadingMessage = context.getString(R.string.setting_up)
+                val firebaseAuth = FirebaseAuth.getInstance()
+                coroutineScope.launch {
+                    if(emailIsValid && passwordIsValid){
+                        firebaseAuth.createUserWithEmailAndPassword(
+                            emailAddressString,
+                            passwordString
+                        ).addOnCompleteListener { task->
+                            if(task.isSuccessful){
+
+                            } else {
+
+                            }
+                        }.await()
+                    }
+                }
+            }
+        }
 
     Column(
         verticalArrangement = Arrangement.Center,
@@ -222,9 +266,14 @@ fun SignUpScreen(
                 }
             }
         }
+        if(loadingMessage.isNotBlank()){
+            Loading(message = loadingMessage)
+        }
         AppButton(
             onClick = {
-                navController.navigate(Routes.SignUpScreen.route)
+                coroutineScope.launch {
+                    signUpUser
+                }
             }
         ) {
             Text(text = stringResource(id = R.string.submit))

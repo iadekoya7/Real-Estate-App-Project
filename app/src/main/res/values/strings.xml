@@ -4,6 +4,9 @@
     <string name="submit">Submit</string>
     <string name="sign_in">Sign In</string>
     <string name="user_name">Username</string>
+    <string name="please_wait">Please wait</string>
+    <string name="agent_pin">Agent Pin</string>
+    <string name="setting_up">Setting Up User Progile</string>
     <string name="create_account">Create Account</string>
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
@@ -11,7 +14,7 @@
     <string name="password">Password</string>
     <string name="account_type">Account Type</string>
     <string name="gender">Gender</string>
-    <string name="login">Login</string>
+    <string name="login">Sign In</string>
     <string name="real_estate_splash">Splash Screen Image</string>
     <string name="discover_home">Discover your home</string>
     <string name="find_affordable">Find affordable houses in Kigali and connect directly with owners</string>

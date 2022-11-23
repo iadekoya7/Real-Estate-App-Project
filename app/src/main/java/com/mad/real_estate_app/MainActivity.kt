@@ -1,5 +1,6 @@
 package com.mad.real_estate_app
 
+import android.app.Activity
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -14,6 +15,7 @@ import androidx.navigation.Navigation
 import androidx.navigation.compose.rememberNavController
 import com.mad.real_estate_app.presentation.Navigation
 import com.mad.real_estate_app.ui.theme.Real_Estate_AppTheme
+import com.mad.real_estate_app.util.DialogProvider
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

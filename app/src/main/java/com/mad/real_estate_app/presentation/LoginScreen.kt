@@ -4,9 +4,12 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Text
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
@@ -15,6 +18,9 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -24,6 +30,7 @@ import androidx.navigation.compose.rememberNavController
 import com.mad.real_estate_app.R
 import com.mad.real_estate_app.ui.theme.Real_Estate_AppTheme
 import com.mad.real_estate_app.util.AppSecondButton
+import com.mad.real_estate_app.util.RealEstateAppBar
 
 @Composable
 fun LoginScreen(
@@ -31,6 +38,13 @@ fun LoginScreen(
 ) {
     val scrollState = rememberScrollState()
     var textFieldName by remember { mutableStateOf("") }
+    var passwordString by remember { mutableStateOf("") }
+    var passwordVisibility by remember { mutableStateOf(false) }
+    val passwordIcon = if (passwordVisibility){
+        Icons.Filled.Visibility
+    } else {
+        Icons.Filled.VisibilityOff
+    }
     Column (
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -38,14 +52,18 @@ fun LoginScreen(
             .verticalScroll(scrollState)
     )
     {
+        RealEstateAppBar(
+            title = "Sign In",
+            onBackPressed = { navController.popBackStack() }
+        )
         Image(
             painter = painterResource(id = R.drawable.real_estate),
             contentDescription = stringResource(id = R.string.real_estate_splash),
             modifier = Modifier
                 .width(300.dp)
                 .height(250.dp)
-                .clip(RoundedCornerShape(35.dp))
                 .padding(bottom = 10.dp)
+                .clip(RoundedCornerShape(35.dp))
                 .fillMaxWidth(1f)
         )
         Text(
@@ -60,8 +78,30 @@ fun LoginScreen(
                 .align(CenterHorizontally),
         )
 
-        NameTextField(name = textFieldName, stringResource(id = R.string.user_name), changed = { textFieldName = it })
-        NameTextField(name = textFieldName, stringResource(id = R.string.password),changed = { textFieldName = it })
+        NameTextField(name = textFieldName, stringResource(id = R.string.email_address), changed = { textFieldName = it })
+        OutlinedTextField(
+            label = { Text(text = stringResource(id = R.string.password))},
+            value = passwordString,
+            onValueChange = {passwordString = it},
+            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Password),
+            modifier = Modifier
+                .fillMaxWidth(0.9f)
+                .padding(top = 15.dp, bottom = 10.dp)
+                .align(Alignment.CenterHorizontally),
+            trailingIcon = {
+                IconButton(onClick = {
+                    passwordVisibility = !passwordVisibility
+                }) {
+                    Icon(
+                        passwordIcon,
+                        contentDescription = "Visibility Icon"
+                    )
+                }
+            },
+            visualTransformation = if (passwordVisibility) VisualTransformation.None
+            else PasswordVisualTransformation(),
+            singleLine = true
+        )
 
         AppSecondButton(
             onClick = {
@@ -81,10 +121,11 @@ fun NameTextField(name: String, labels: String, changed: (String) ->Unit){
     OutlinedTextField(
         value = name,
         label = {Text(text = labels)},
+        keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Email),
         onValueChange = changed,
         modifier = Modifier
             .fillMaxWidth(0.9f)
-            .padding(top = 15.dp, bottom = 20.dp)
+            .padding(top = 15.dp, bottom = 10.dp)
     )
 }
 
