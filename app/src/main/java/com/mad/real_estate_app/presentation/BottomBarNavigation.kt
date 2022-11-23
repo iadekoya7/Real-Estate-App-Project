@@ -10,7 +10,7 @@ import com.mad.real_estate_app.screens.TagsScreen
 //import com.mad.real_estate_app.screens.SearchScreen
 
 @Composable
-fun BottomNavGraph(navController: NavHostController) {
+fun BottomBarNavigation(navController: NavHostController) {
     NavHost(
         navController = navController,
         startDestination = BottomBarItems.Home.route
