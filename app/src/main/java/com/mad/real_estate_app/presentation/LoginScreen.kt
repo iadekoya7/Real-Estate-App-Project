@@ -53,6 +53,7 @@ fun LoginScreen(
     )
     {
         RealEstateAppBar(
+            navController  = navController,
             title = "Sign In",
             onBackPressed = { navController.popBackStack() }
         )

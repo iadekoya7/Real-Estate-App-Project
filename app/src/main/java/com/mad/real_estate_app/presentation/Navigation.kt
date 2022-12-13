@@ -5,6 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.mad.real_estate_app.screens.HomeScreen
 import com.mad.real_estate_app.util.DialogProvider
 
 @Composable
@@ -13,7 +14,8 @@ fun Navigation(
 ) {
     NavHost(
         navController = navController,
-        startDestination = Routes.SplashScreen.route
+        startDestination = Routes.Home.route
+//        startDestination = Routes.SplashScreen.route
     ){
         composable(Routes.SignUpScreen.route){
             SignUpScreen(
@@ -24,7 +26,7 @@ fun Navigation(
             SplashScreen(navController = navController)
         }
         composable(Routes.Home.route){
-
+            HomeScreen(navController = navController)
         }
         composable(Routes.LoginScreen.route){
             LoginScreen(navController = navController)

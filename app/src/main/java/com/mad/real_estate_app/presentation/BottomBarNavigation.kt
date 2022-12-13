@@ -16,7 +16,7 @@ fun BottomBarNavigation(navController: NavHostController) {
         startDestination = BottomBarItems.Home.route
     ) {
         composable(route = BottomBarItems.Home.route) {
-            HomeScreen()
+            HomeScreen(navController)
         }
         composable(route = BottomBarItems.Tags.route) {
             TagsScreen()

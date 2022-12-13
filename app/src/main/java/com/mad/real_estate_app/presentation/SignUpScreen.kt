@@ -122,6 +122,7 @@ fun SignUpScreen(
             .verticalScroll(scrollState)
     ){
         RealEstateAppBar(
+            navController  = navController,
             title = title,
             onBackPressed = { navController.popBackStack() }
         )
