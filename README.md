@@ -4,3 +4,5 @@ Android Mobile Application that can be used in the real estate industry by custo
 **Link to wireframes:** https://www.figma.com/file/p2bFnfwjXAzJfolIQiBoXm/Homeless-Wireframe?node-id=0%3A1&t=LiOeVoNWNRWIVJvu-1
 
 **Link to Explore phase document:** https://docs.google.com/document/d/1dVhSFVisA_joRGdJmRqw3iCGG7lsxlVAaSaR_XmWvlQ/edit
+
+**Link to Iteration 2 Explore phase document:** https://docs.google.com/document/d/10n3lFwf8xgc6ztleggEsftKECiilRu10ztNrTDvhxcM/edit
