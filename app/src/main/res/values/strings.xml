@@ -6,7 +6,7 @@
     <string name="user_name">Username</string>
     <string name="please_wait">Please wait</string>
     <string name="agent_pin">Agent Pin</string>
-    <string name="setting_up">Setting Up User Profile</string>
+    <string name="setting_up">Setting Up User Progile</string>
     <string name="create_account">Create Account</string>
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
@@ -20,5 +20,4 @@
     <string name="find_affordable">Find affordable houses in Kigali and connect directly with owners</string>
     <string name="inText">Text</string>
     <string name="imageDescription">Description</string>
-    <string name="listings">Houses For Rent</string>
 </resources>
