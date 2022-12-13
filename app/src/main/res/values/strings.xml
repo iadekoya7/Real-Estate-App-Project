@@ -20,4 +20,12 @@
     <string name="find_affordable">Find affordable houses in Kigali and connect directly with owners</string>
     <string name="inText">Text</string>
     <string name="imageDescription">Description</string>
+    <string name="updateProfile">Update Profile</string>
+    <string name="fullname">Name</string>
+    <string name="phone">Phone</string>
+    <string name="emailAdd">Email</string>
+    <string name="sex">Sex</string>
+    <string name="update">Update</string>
+    <string name="error">Fields can not be empty!</string>
+    <string name="successMsg">Update successful!</string>
 </resources>
