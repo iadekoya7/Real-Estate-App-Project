@@ -1,5 +1,6 @@
 package com.mad.real_estate_app.presentation
 
+import android.app.Dialog
 import android.widget.Toast
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -29,6 +30,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.toSize
+import androidx.compose.ui.window.DialogWindowProvider
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.google.firebase.auth.FirebaseAuth
@@ -92,8 +94,16 @@ fun SignUpScreen(
                     Toast.makeText(context, "First name cannot be empty", Toast.LENGTH_LONG).show()
                     return@signUpUser
                 }
-                if(!lastNameIsValid) {
+                if(lastNameIsValid) {
                     Toast.makeText(context, "Last name cannot be empty", Toast.LENGTH_LONG).show()
+                    return@signUpUser
+                }
+                if(!emailIsValid) {
+                    Toast.makeText(context, "Email Address cannot be empty", Toast.LENGTH_LONG).show()
+                    return@signUpUser
+                }
+                if(!passwordIsValid) {
+                    Toast.makeText(context, "Password cannot be empty", Toast.LENGTH_LONG).show()
                     return@signUpUser
                 }
                 loadingMessage = context.getString(R.string.setting_up)
@@ -105,9 +115,11 @@ fun SignUpScreen(
                             passwordString
                         ).addOnCompleteListener { task->
                             if(task.isSuccessful){
-
+                                Toast.makeText(context, task.result.toString(), Toast.LENGTH_LONG).show()
+                                navController.navigate(Routes.Home.route)
                             } else {
-
+                                Toast.makeText(context, "Authentication Failed", Toast.LENGTH_LONG).show()
+                                return@addOnCompleteListener
                             }
                         }.await()
                     }
@@ -273,7 +285,7 @@ fun SignUpScreen(
         AppButton(
             onClick = {
                 coroutineScope.launch {
-                    signUpUser
+                    signUpUser()
                 }
             }
         ) {
