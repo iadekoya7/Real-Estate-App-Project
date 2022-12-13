@@ -93,4 +93,7 @@ dependencies {
 
     //Coroutine dependencies
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
+
+    // Loading Image dependency
+    implementation 'io.coil-kt:coil-compose:1.4.0'
 }

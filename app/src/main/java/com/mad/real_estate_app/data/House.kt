@@ -4,6 +4,7 @@ data class House (
     var Description: String?=null,
     var Location: String?=null,
     var Rooms: String?=null,
+    var Price: Long?=null,
     var Bathrooms: String?=null,
     var Image: String?=null
 )
